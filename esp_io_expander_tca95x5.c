@@ -160,5 +160,12 @@ esp_err_t esp_io_expander_create_tca95x5(i2c_master_bus_handle_t bus_handle,
         return err;
     }
 
-    return tca95x5_reset((esp_io_expander_handle_t) &tca95x5->base);
+    err = tca95x5_reset((esp_io_expander_handle_t) &tca95x5->base);
+    if (err != ESP_OK) {
+        free(tca95x5);
+        ESP_LOGE(TAG, "Error resetting device");
+        return err;
+    }
+    *out_handle = (esp_io_expander_handle_t) tca95x5;
+    return err;
 }
