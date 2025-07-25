@@ -1,5 +1,6 @@
 version: "1.0.0"
 description: ESP IO Expander - TCA9535/TCA9555
+url: https://github.com/caleb-snow-cbm/esp_io_expander_tca95x5
 dependencies:
   idf: ">=5.2"
   esp_io_expander:
