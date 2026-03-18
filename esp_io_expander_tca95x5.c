@@ -53,7 +53,8 @@ static esp_err_t tca95x5_read_input_reg(esp_io_expander_handle_t handle, uint32_
 {
     i2c_master_dev_handle_t dev = ((esp_io_expander_tca95x5_t*) handle)->dev;
     *value = 0;
-    return i2c_master_transmit_receive(dev, INPUT_PORT_0, sizeof(INPUT_PORT_0), (uint8_t*) value, NUM_PORTS, TIMEOUT_MS);
+    const uint8_t write_buffer[] = { INPUT_PORT_0 };
+    return i2c_master_transmit_receive(dev, write_buffer, sizeof write_buffer, (uint8_t*) value, NUM_PORTS, TIMEOUT_MS);
 }
 
 static esp_err_t tca95x5_write_output_reg(esp_io_expander_handle_t handle, uint32_t value)
